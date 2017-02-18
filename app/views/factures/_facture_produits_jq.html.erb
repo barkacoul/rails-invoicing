@@ -1,0 +1,21 @@
+<tr class="produits">
+        <!-- :facture_produit, -->
+        <td><a class="cut">-</a><span contenteditable><%= fp.collection_select(:produit_id, Produit.all, :id, :nom, {}, {:name => 'facture[facture_produits_attributes][][produit_id]'} ) %></span></td>
+        <!--fp--><td><span data-prefix>CFA</span><span class="pu" contenteditable>150.00</span></td>
+        <!--fp--><td><span class="qte" contenteditable>4</span></td>
+        <!--fp--><td><span data-prefix>CFA</span><span class="sous_total">600.00</span></td>
+        <%= fp.hidden_field :prix_unitaire, {:name => 'facture[facture_produits_attributes][][prix_unitaire]', :class => "prix_unitaire"} %>
+        <%= fp.hidden_field :quantite, {:name => 'facture[facture_produits_attributes][][quantite]', :class => "quantite"} %>
+        <%= fp.hidden_field :sous_total, {:name => 'facture[facture_produits_attributes][][sous_total]', :class => "sous_total"} %>
+</tr>
+
+<tr class="produits">
+        <!-- :facture_produit, -->
+        <td><span contenteditable><%= fp.collection_select(:produit_id, Produit.all, :id, :nom) %></span></td>
+        <!--fp--><td><span data-prefix>CFA</span><span class="pu" contenteditable>150.00</span></td>
+        <!--fp--><td><span class="qte" contenteditable>4</span></td>
+        <!--fp--><td><span data-prefix>CFA</span><span class="sous_total">600.00</span></td>
+        <%= fp.hidden_field :prix_unitaire, :class => "prix_unitaire" %>
+        <%= fp.hidden_field :quantite, :class => "quantite" %>
+        <%= fp.hidden_field :sous_total, :class => "sous_total" %>
+</tr>

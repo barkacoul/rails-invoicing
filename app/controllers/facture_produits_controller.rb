@@ -1,0 +1,2 @@
+class FactureProduitsController < ApplicationController
+end

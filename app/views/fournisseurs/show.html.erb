@@ -1,0 +1,15 @@
+<div>
+    <h2>Fournisseur: <%= @fournisseur.nom %></h2>&nbsp; <em><%= link_to "Modifier", :action => "edit", :id => @fournisseur.id %> ou <%= link_to "Supprimer", {:action => "destroy", :id => @fournisseur.id}, :method => :delete, data: {confirm: "Êtes vous sûr de vouloir supprimer ce fournisseur?"} %> | <%= link_to "Liste des fournisseurs", :action => "index" %></em>
+    <br/>
+    
+    <p>Entreprise: <%= @fournisseur.entreprise %></p><br/>
+    <p>Description: <%= @fournisseur.description %></p><br/>
+    <p>Pays: <%= @fournisseur.pays %></p><br/>
+    <p>Ville: <%= @fournisseur.ville %></p>
+    <p>Adresse: <span><%= @fournisseur.adresse%><br/><%= @fournisseur.adresse_suite %></span></p><br/>
+    <p>Email: <%= @fournisseur.email %></p><br/>
+    <p>Téléphone (Travail): <%= @fournisseur.tel_travail %></p><br/>
+    <p>Téléphone (domicile): <%= @fournisseur.tel_domicile %></p><br/>
+    <p>Téléphone (mobile): <%= @fournisseur.tel_portable %></p><br/>
+    
+</div>

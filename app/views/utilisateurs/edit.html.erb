@@ -1,0 +1,21 @@
+<div>
+    <div>
+        <h2>Mettre à jour son profil: <%= @utilisateur.nom_complet %></h2>
+    </div>
+    <br/>
+    
+    <div>
+        <%= form_for :utilisateur, url: {:action => "update", :id => @utilisateur.id}, :method => "patch", html: { mutlipart: true } do |form| %>
+        <div>
+        <%= form.label :logo %> &nbsp;
+        <%= form.file_field :logo %>
+        </div>
+        <br/>
+        
+        <%= render :partial => 'form', locals: {f: form} %>
+        
+        <%= form.submit "Mettre à jour", :class => "submit" %> &nbsp;
+        <%= link_to "Annuler", :action =>"show", :id => @utilisateur.id, :class => "annuler" %>
+        <% end %>
+    </div>
+</div>

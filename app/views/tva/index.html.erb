@@ -1,0 +1,29 @@
+<h2>
+    <%= link_to 'Ajouter une nouvelle valeur T.V.A dans la base de données', :action => "new" %>  
+</h2><br/>
+
+<%= flash_notice %>
+
+
+<div>
+    <h2>
+    Liste des T.V.As
+</h2>
+    
+    <%= pas_tva(@tva) %>
+    
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>VALEUR</th>
+        </thead>
+        <tbdoy>
+            <% @tva.each do |tva| %>
+            <tr>
+                <td><%= tva.id %></td>
+                <td><%= tva.valeur %></td>
+            </tr>
+            <% end %>
+        </tbdoy>
+    </table>
+</div>

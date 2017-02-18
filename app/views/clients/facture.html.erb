@@ -1,0 +1,26 @@
+<h1>Factures</h1>
+
+<div>
+    <h2>Liste des Factures: <%= @client.nom %></h2>
+  
+    <%= pas_de_factures(@client_factures) %>
+    <table>
+        
+        <thead>
+            <td>Nom</td>
+            <td>Pays</td>
+            <td>Ville</td>
+        </thead>
+        
+        <tbody>
+            <% @client_factures.each do |facture| %>            
+            <tr>
+                <td><%= facture.id %></td>
+                <td><%= facture.created_at %></td>
+                <td><%= link_to "Voir details", :controller => "factures", :action => "show", :id => facture.id, :utilisateur_id => @current_user.id %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    
+    </table>
+</div>

@@ -1,0 +1,117 @@
+<div class="fac">
+    <header>
+			<h1>FACTURE</h1>
+			<div class="adresse_entreprise">
+				<p>Email: <%= @current_user.email %></p>
+				<p>Adresse: <%= @current_user.adresse %></p>
+				<p>Pays: <%= @current_user.pays %></p>
+                <p>Ville: <%= @current_user.ville %></p>
+                <p>Tel: <%= @current_user.telephone %></p>
+			</div>
+			     <span>
+                <%= image_tag @current_user.logo.url(:thumb) unless @current_user.nil? %></span>
+		</header>
+    
+    
+    
+		<article>
+			<h1>Recipient</h1>
+			<address>
+				<p><%= @facture.client.nom %><br/>
+                    <%= @facture.client.adresse %><br/>
+                    <%= @facture.client.ville %>,<%= @facture.client.pays %>
+                </p>
+			</address>
+			<table class="meta">
+				<tr>
+					<th><span contenteditable>Invoice #</span></th>
+					<td><span contenteditable>101138</span></td>
+				</tr>
+				<tr>
+					<th><span contenteditable>Date</span></th>
+					<td><span contenteditable>January 1, 2012</span></td>
+				</tr>
+				<tr>
+					<th><span contenteditable>Amount Due</span></th>
+					<td><span id="prefix" contenteditable>CFA</span><span><%= @facture.montant_ttc %></span></td>
+				</tr>
+			</table>
+			<table class="inventory">
+				<thead>
+					<tr>
+						<th><span contenteditable>Description</span></th>
+						<th><span contenteditable>Quantité</span></th>
+						<th><span contenteditable>Prix Unitaire</span></th>
+						<th><span contenteditable>Prix Total</span></th>
+					</tr>
+				</thead>
+				<tbody>
+                    
+                    <% for produit in @facture.facture_produits %>
+					<tr>
+						<td><span contenteditable><%= produit.produit.nom %></span></td>
+						<td><span contenteditable><%= produit.quantite %></span></td>
+						<td><span data-prefix>CFA</span><span contenteditable><%= produit.prix_unitaire %></span></td>
+						<td><span contenteditable><%= produit.sous_total %></span></td>
+					</tr>
+                    
+                    <% end %>
+				</tbody>
+			</table>
+			
+            <div>
+                <div class="montant_en_lettre"%>
+                   <!-- <p>Arrêté la présente facture à la somme de </p> -->
+                </div>
+			<table class="balance">
+				<tr>
+					<th><span>Total HT</span></th>
+					<td><span data-prefix>CFA</span><span><%= @facture.montant_ht %></span></td>
+				</tr>
+				<tr>
+					<th><span contenteditable>T.V.A (%)</span></th>
+					<td><span data-prefix>%</span><span contenteditable><%= @facture.tva_valeur %></span></td>
+				</tr>
+				<tr>
+					<th><span contenteditable>Total TTC</span></th>
+					<td><span data-prefix>CFA</span><span><%= @facture.montant_ttc %></span></td>
+				</tr>
+			</table>
+            </div>
+            
+		</article>
+    
+    
+        <!--
+		<aside>
+			<h1><span contenteditable>Additional Notes</span></h1>
+			<div contenteditable>
+				<p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
+			</div>
+		</aside>
+     -->
+ <br />
+<br />
+<div>
+    <%= link_to "Retour", :action => "index" %>
+    <a class="btn btn-info btn-sm" id="facture_btn" data-toggle="modal" data-target="#modele_facture">Aperçu avant Impression</a>
+</div>
+    
+</div>
+
+
+
+
+
+<div class="modal hide fade" id="modele_facture" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="width: 920px">
+      <div class="contaner-fluid facture-wrapper" style="margin: 10px" id="print-me">
+        <%= render :partial => "facture" %>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="printDiv('print-me')">Imprimer</button>
+        </div>
+    </div>
+  </div>
+</div>

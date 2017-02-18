@@ -1,0 +1,33 @@
+<h1>Factures</h1>
+
+
+<%= flash_notice %>
+<div>
+    <h2>Liste des Factures</h2>
+    <h3><%= link_to "Créer une nouvelle facture", :action => "new" %></h3><br/>
+    <%= pas_de_factures(@factures) %>
+    <table>
+        
+        <thead>
+            <td>Facture</td>
+            <td>Client concerné</td>
+            <td>Montant</td>
+            <td>Statut</td>
+            <td>Date</td>
+        </thead>
+        
+        <tbody>
+            <% @factures.each do |facture| %>            
+            <tr>
+                <td><%= facture.nom %></td>
+                <td><%= facture.client.nom %></td>
+                <td><%= facture.montant_ttc %></td>
+                <td>-</td>
+                <td><%= facture.created_at %></td>
+                <td><%= link_to "Voir details", :action => "show", :id => facture.id, :utilisateur_id => @current_user.id %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    
+    </table>
+</div>

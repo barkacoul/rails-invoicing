@@ -1,0 +1,148 @@
+<div class="fac">
+<!-- -------------- En tête à remplir avec des valeurs rails statiques--------------- -->
+		<header>
+			<h1>Facture</h1>
+			<div class="adresse_entreprise">
+				<p>Email: <%= @current_user.email %></p>
+				<p>Adresse: <%= @current_user.adresse %></p>
+				<p>Pays: <%= @current_user.pays %></p>
+                <p>Ville: <%= @current_user.ville %></p>
+                <p>Tel: <%= @current_user.telephone %></p>
+			</div>
+			<span><%= image_tag @current_user.logo.url(:thumb) unless @current_user.nil? %></span>
+		</header>
+        
+<!-- --------------Fin d'en tête à remplir avec des valeurs rails statiques--------------- -->
+        <%= form_for @facture, :url => {:action => "create", :utilisateur_id => @current_user.id } do |f| %>
+
+		<article>
+			<h1>Bénéficiaire</h1>
+			<address contenteditable>
+				<p><%= f.collection_select(:client_id, @current_user.clients.all, :id, :nom_pays_et_ville) %></p>
+			</address>
+            
+			<table class="meta">
+				<tr>
+					<th><span contenteditable>Date</span></th>
+					<td><span contenteditable>Le 14 Janvier 2017<</span></td>
+				</tr>
+                <tr>
+					<th><span contenteditable>Montant</span></th>
+					<td><span id="prefix" contenteditable>CFA</span><span>600.00</span></td>
+				</tr>
+			</table>
+            
+			<table class="inventory">
+				<thead>
+					<tr>
+						<th><span contenteditable>Désignation</span></th>
+						<th><span contenteditable>Prix Unitaire</span></th>
+						<th><span contenteditable>Quantité</span></th>
+						<th><span contenteditable>Prix Total</span></th>
+					</tr>
+				</thead>
+				<tbody id="facture_produits">
+                     <%= f.fields_for :facture_produits do |fp| %>
+                        <%= render :partial => 'facture_produits', locals: {fp: fp} %>
+                    
+                    <script type="text/javascript">
+                        $(function(){
+                         //adding new row function
+                            var count = 2;
+    $(".add").click(function(){
+    //
+        if(count >= 14){
+            alert("Vous avez atteint le nombre maximum de lignes. Pour continuer, veuillez sauvegarder et créer une nouvelle facture.")
+        }
+        
+        else{
+        $('.inventory tr:last').after("<%= j render :partial => 'facture_produits_jq', locals: {fp: fp} %>");
+        }
+                                      
+        count += 1;
+                                      
+        updateInvoice();
+    });
+                        });
+        function updateInvoice(){
+    var total = 0;
+        $('#facture_produits .produits').each(function(){
+            var pu = parseFloat($(this).find(".pu").html());
+            //alert('this is'+pu);
+            var qte = parseFloat($(this).find(".qte").html());
+            //alert('this is'+qte);
+            var sous_total = pu * qte;
+            $(this).find(".sous_total").html(sous_total);
+            $(this).find(".prix_unitaire").val(pu);
+            $(this).find(".quantite").val(qte);
+            $(this).find(".sous_total").val(sous_total);
+            if(!isNaN(sous_total))
+                total+= sous_total;
+        });
+        $('#ht').html(total);
+        $(".montant_ht").val(total);
+        var tva = parseFloat($("#tva").html());
+        $(".tva_valeur").val(tva);
+        var ttc = total + ((total*tva)/100);
+        $('#ttc').html(ttc);
+        $(".montant_ttc").val(ttc);
+}
+                    </script>
+                     <% end %>
+				</tbody>
+			</table>
+            <!-- Add link start-->
+            <!-- <a class="add">+</a> -->
+			<!-- add link end -->
+			<table class="balance">
+				<tr>
+					<th><span contenteditable>Montant HT</span></th>
+					<td><span data-prefix>CFA</span><span id="ht">600.00</span></td>
+				</tr>
+				<tr>
+					<th><span contenteditable>T.V.A</span></th>
+                    <td><span id="tva" contenteditable></span></td>
+				</tr>
+				<tr>
+					<th><span contenteditable>Montant TTC</span></th>
+					<td><span data-prefix>CFA</span><span id="ttc">600.00</span></td>
+				</tr>
+                <%= f.hidden_field :montant_ht, :class => "montant_ht" %>
+                <%= f.hidden_field :montant_ttc, :class => "montant_ttc" %>
+                <%= f.hidden_field :tva_valeur, :value => 1, :class => "tva_valeur" %>
+			</table>
+		</article>
+        
+        <!-- Modal pour enregistrer le nom de facture -->
+    
+        <div id="nom_facture" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content" style="width: 400px">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Entrez le nom de facture</h4>
+                    </div>
+                    <%= f.text_field :nom %>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        <%= f.submit "Créer", :class => "btn btn-primary" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Fin de modal pour enregistrer le nom de facture -->
+        <a class="btn btn-default btn-info btn-sm" id="facture_enregistrer_btn" data-toggle="modal" data-target="#nom_facture">Enregistrer</a>
+        <%= link_to "Annuler", {:action => "new"}, :class => "annuler" %>
+        <% end %>
+        
+		<!--
+        <aside>
+			<h1><span contenteditable>########################</span></h1>
+			<div contenteditable>
+				<p>############################################</p>
+			</div>
+		</aside>
+        -->
+    
+    </div>

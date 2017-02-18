@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ResourcePlanner</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%#= javascript_include_tag 'defaults' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div>
+    
+    <div class="wrapper row1">
+  <header id="header" class="clear">
+    <div id="hgroup">
+      <h1><a href="#">SmartInvoice</a></h1>
+      <h2>Vos factures en toute simplicité</h2>
+    </div>
+    <div class="div-tete">
+        <!-- inserer facture -->
+        <div class="liens-head">
+            <p>
+            <%= link_to "Se déconnecter", {:controller => "sessions", :action => "destroy"}, :method => :delete, data: {confirm: "Voulez vous vraiment vous déconnecter?"} %>
+            </p>
+            <p><%= link_to "Éditer son profil", :controller => "utilisateurs", :action => "edit", :id => @current_user.id %></p>
+        </div>
+    </div>
+    <nav>
+                    <li class="dropdown">
+                        Produits
+                        <div class="dropdown-content">
+                            <%= link_to "Inventaire", :controller => "produits", :action => "index", :utilisateur_id => @current_user.id %>
+                            <%= link_to "Ajouter un nouveau produit", :controller => "produits", :action => "new", :utilisateur_id => @current_user.id %>
+                        </div>
+                    </li>
+          
+                    <li class="dropdown">
+                        Fournisseurs
+                        <div class="dropdown-content">
+                            <%= link_to "Afficher les fournisseurs", :controller => "fournisseurs", :action => "index", :utilisateur_id => @current_user.id %>
+                            <%= link_to "Ajouter un nouveau fournisseur", :controller => "fournisseurs", :action => "new", :utilisateur_id => @current_user.id %>
+                        </div>
+            
+                    </li>
+          
+                    <li class="dropdown">
+                        Clients
+                        <div class="dropdown-content">
+                            <%= link_to "Afficher les clients", :controller => "clients", :action => "index", :utilisateur_id => @current_user.id %>
+                            <%= link_to "Ajouter un nouveau client", :controller => "clients", :action => "new", :utilisateur_id => @current_user.id %>
+                        </div>
+                    </li>
+          
+                    <li class="dropdown">
+                        Factures
+                        <div class="dropdown-content">
+                            <%= link_to "Afficher les factures", :controller => "factures", :action => "index", :utilisateur_id => @current_user.id %>
+                            <%= link_to "Créer une nouvelle facture", :controller => "factures", :action => "new", :utilisateur_id => @current_user.id %>
+                        </div>
+                    </li>
+          
+                    <li class="dropdown">
+                        Employés
+                        <div class="dropdown-content">
+                            <a>Liste des employés</a>
+                            <a>Ajouter un nouvel employé</a>
+                        </div>
+                    </li>
+    </nav>
+  </header>
+</div>
+    
+    <!-- content -->
+<div id="main_content" class="wrapper row2">
+  <div id="container" class="clear">
+    <!-- main content -->
+    <div id="homepage" class="clear">
+        
+                <%= yield %>
+            </div>
+    </div>
+        </div>
+    
+   <!-- Footer -->
+<div class="wrapper row3">
+  <footer id="footer" class="clear">
+    <p class="fl_left">Copyright &copy; 2017 - Tous droits réservés - <a href="#">SmartInvoice</a></p>
+    <p class="fl_right"><a href="#" title="#">...</a></p>
+  </footer>
+</div>
+    
+    </div>
+</body>
+</html>

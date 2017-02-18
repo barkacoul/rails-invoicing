@@ -1,0 +1,42 @@
+<h1>Fournisseurs</h1>
+
+
+<%= flash_notice %>
+<div>
+    <h2>Liste des produits du fournisseur</h2>
+    <br/>
+    
+    <%= pas_de_produits(@produit_fournisseur) %>
+    <table>
+        
+        <thead>
+            <td>Nom</td>
+            <td>Description</td>
+            <td>Quantité</td>
+            <td>Prix Unitaire</td>
+            <td>Prix de Vente</td>
+            <td>Valeur de Stock</td>
+            <td>Marge Bénéficiaire</td>
+        </thead>
+        
+        <tbody>
+            <% @produit_fournisseur.each do |produit| %>            
+            <tr>
+                <td><%= produit.nom %></td>
+                <td><%= produit.description %></td>
+                <td><%= produit.quantite %></td>
+                <td><%= produit.prix_unitaire %></td>
+                <td><%= produit.prix_de_vente %></td>
+                <td><%= produit.valeur_de_stock %></td>
+                <td><%= produit.marge_beneficiaire %></td>
+                <td><%= link_to "Mettre à jour", :controller => "produits", :action => "edit", :utilisateur_id => @current_user.id, :id => produit.id %></td>
+                <td><%= link_to "Supprimer", {:controller => "produits", :action => "destroy", :utilisateur_id => @current_user.id, :id => produit.id}, :method => :delete, data: {confirm: "Êtes vous sûr de vouloir supprimer ce produit?"} %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    
+    </table>
+    <br />
+    
+    <p><%= link_to "Retour: liste des fournisseurs", :action => "index", :utilisateur_id => @current_user.id %></p>
+</div>

@@ -1,0 +1,16 @@
+<h2>Mise à jour d'informations du fournisseur: <%= @fournisseur.nom %> </h2>
+
+<%= form_for :fournisseur, :url => {:action => 'update', :id => @fournisseur.id}, :method => :patch do |form| %>
+
+<fieldset>
+    <legend>Informations du fournisseur</legend>
+<%= render :partial => 'form', :locals => {:f => form} %>
+<div>
+    <%= submit_tag "Mettre à jour", :class => "submit" %> &nbsp;
+    <%= link_to "Annuler", {:action => "show", :id => @fournisseur.id}, :class => "cancel" %>
+</div>
+</fieldset>
+
+
+
+<% end %>

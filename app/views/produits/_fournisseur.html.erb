@@ -1,0 +1,4 @@
+<div class="fournisseurs">
+    <%= fp.label :fournisseur_id, "Fournisseur" %>:
+    <%= fp.collection_select(:fournisseur_id, @current_user.fournisseurs.all, :id, :nom, {}, :index => 0) %>
+</div>

@@ -1,0 +1,13 @@
+<div>
+    <h2>Client: <%= @client.nom %></h2>&nbsp; <em><%= link_to "Modifier", :action => "edit", :id => @client.id %> ou <%= link_to "Supprimer", {:action => "destroy", :id => @client.id}, :method => :delete, data: {confirm: "Êtes vous sûr de vouloir supprimer ce client?"} %> | <%= link_to "Liste des clients", :action => "index" %></em>
+    <br/>
+    
+    <p>Pays: <%= @client.pays %></p><br/>
+    <p>Ville: <%= @client.ville %></p>
+    <p>Adresse: <span><%= @client.adresse%><br/><%= @client.adresse_suite %></span></p><br/>
+    <p>Email: <%= @client.email %></p><br/>
+    <p>Téléphone (Travail): <%= @client.tel_travail %></p><br/>
+    <p>Téléphone (domicile): <%= @client.tel_domicile %></p><br/>
+    <p>Téléphone (mobile): <%= @client.tel_portable %></p><br/>
+    
+</div>

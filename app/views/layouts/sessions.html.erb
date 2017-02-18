@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ResourcePlanner</title>
+  <%= stylesheet_link_tag    'sessions', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'sessions', 'data-turbolinks-track' => true %>
+    <%#= javascript_include_tag 'defaults' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+    <div class="main">
+    
+        <%= flash_notice %>
+    
+    <div class="container">
+<center>
+<div class="middle">
+      <div id="login">
+
+          <%= yield %>
+
+        <div class="clearfix"></div>
+
+      </div> <!-- end login -->
+      <div class="logo">SmartInvoice
+          
+          <div class="clearfix"></div>
+      </div>
+      
+      </div>
+</center>
+    </div>
+
+</div>
+</body>
+    
+</html>

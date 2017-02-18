@@ -1,0 +1,17 @@
+<h2>Ajouter un nouveau client</h2>
+<br/>
+
+<%= form_for :produit, :url => {:action => 'create', :utilisateur_id => @current_user.id } do |form| %>
+
+<fieldset>
+    <legend>Informations du produit</legend>
+<%= render :partial => 'form', :locals => {:f => form} %>
+<div>
+    <%= form.submit "Ajouter", :class => "submit" %> &nbsp;
+    <%= link_to "Annuler", {:action => "index", :utilisateur_id => @current_user.id}, :class => "cancel" %>
+</div>
+</fieldset>
+
+
+
+<% end %>

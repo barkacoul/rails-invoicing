@@ -1,0 +1,30 @@
+<h1>Clients</h1>
+
+
+<%= flash_notice %>
+<div>
+    <h2>Liste des clients</h2>
+    <h3><%= link_to "Ajouter un nouveau client", :action => "new" %></h3><br/>
+    <%= pas_clients(@clients) %>
+    <table>
+        
+        <thead>
+            <td>Nom</td>
+            <td>Pays</td>
+            <td>Ville</td>
+        </thead>
+        
+        <tbody>
+            <% @clients.each do |client| %>            
+            <tr>
+                <td><%= client.nom %></td>
+                <td><%= client.pays %></td>
+                <td><%= client.ville %></td>
+                <td><%= link_to "Voir details", :action => "show", :id => client.id %></td>
+                <td><%= link_to "Factures", :action => "facture", :id => client.id %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    
+    </table>
+</div>

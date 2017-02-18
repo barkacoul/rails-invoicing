@@ -1,0 +1,30 @@
+<div>
+    <%= f.label :nom %>:
+    <%= f.text_field :nom, :class => "input_field" %>
+</div>
+<br/>
+<div id="fournisseur_produits">
+ <%= f.label :fournisseur_id, "Fournisseur" %>:
+ <%= f.collection_select(:fournisseur_id, @current_user.fournisseurs.all, :id, :nom) %>
+</div>
+<br/>
+<div>
+    <%= f.label :description %>:
+    <%= f.text_field :description, :class => "input_field" %>
+</div>
+<br/>
+<div>
+    <%= f.label :quantite %>:
+    <%= f.text_field :quantite, :class => "input_field", :step => :any %>
+</div>
+<br/>
+<div>
+    <%= f.label :prix_unitaire %>:
+    <%= f.text_field :prix_unitaire, :class => "input_field", :step => :any %>
+</div>
+<br/>
+<div>
+    <%= f.label :prix_de_vente %>:
+    <%= f.text_field :prix_de_vente, :class => "input_field", :step => :any %>
+</div>
+<br/>

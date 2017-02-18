@@ -1,0 +1,10 @@
+<tr class="produits">
+        <!-- :facture_produit, -->
+        <td><span contenteditable><%= fp.collection_select(:produit_id, @current_user.produits.all, :id, :nom, {include_blank: 'Choisissez un produit'}) %></span></td>
+        <!--fp--><td><span data-prefix>CFA</span><span class="pu" contenteditable></span></td>
+        <!--fp--><td><span class="qte" contenteditable></span></td>
+        <!--fp--><td><span data-prefix>CFA</span><span class="sous_total"></span></td>
+        <%= fp.hidden_field :prix_unitaire, :class => "prix_unitaire" %>
+        <%= fp.hidden_field :quantite, :class => "quantite" %>
+        <%= fp.hidden_field :sous_total, :class => "sous_total" %>
+</tr>

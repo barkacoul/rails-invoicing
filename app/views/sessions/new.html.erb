@@ -1,0 +1,17 @@
+        <%= form_tag :action => "create" do %>
+       
+        <fieldset class="clearfix">
+
+            <p ><span class="fa fa-user"></span> <%= text_field_tag :pseudo, params[:pseudo], placeholder: "Nom d'utilisateur" %></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="fa fa-lock"></span><%= password_field_tag :password, params[:password], placeholder: "Mot de Passe" %></p> <!-- JS because of IE support; better: placeholder="Password" -->
+            
+             <div>
+                                <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="#">Récupérer MDP</a></span>
+                                <span style="width:50%; text-align:right;  display: inline-block;"><%= submit_tag "Se Connecter" %></span>
+                            </div>
+
+          </fieldset>
+<div class="clearfix"></div>
+    
+    
+        <% end %>

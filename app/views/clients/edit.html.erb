@@ -1,0 +1,16 @@
+<h2>Mise à jour d'informations du client: <%= @client.nom %> </h2>
+
+<%= form_for :client, :url => {:action => 'update', :utilisateur_id => @current_user.id, :id => @client.id}, :method => :patch do |form| %>
+
+<fieldset>
+    <legend>Informations du client</legend>
+<%= render :partial => 'form', :locals => {:f => form} %>
+<div>
+    <%= submit_tag "Mettre à jour", :class => "submit" %> &nbsp;
+    <%= link_to "Annuler", {:action => "show", :utilisateur_id => @current_user.id, :id => @client.id}, :class => "cancel" %>
+</div>
+</fieldset>
+
+
+
+<% end %>

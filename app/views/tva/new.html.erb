@@ -1,0 +1,17 @@
+<h1>Ajouter nouvelle T.V.A</h1>
+
+<div class="form">   
+    <fieldset>
+        <legend>Entrez la valeur de T.V.A</legend>
+        <%= form_for :tva, :url => {:action => 'create'} do |f| %>
+        
+        <div>
+             <%= f.label :valeur %>:
+             <%= f.number_field :valeur, :class => "input_field", step: :any %>
+        </div>
+        
+        <%= submit_tag "Ajouter", :class => "submit" %> &nbsp;
+        <%= link_to "Annuler", {:action => "index"}, :class => "cancel" %>
+        <% end %>
+    </fieldset>
+</div>

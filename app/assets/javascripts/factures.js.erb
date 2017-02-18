@@ -1,0 +1,93 @@
+$(function(){
+    updateInvoice();
+
+    $(".inventory").on('click', '.cut', function(){
+       var row = $(this).closest('tr');
+        row.remove();
+        updateInvoice();
+    });
+    
+    //màj de facture change/keyup
+    $('#facture_produits').on('keyup', '.produits', function(){
+        var total = 0;
+        var ttc = 0;
+        
+        $('#facture_produits .produits').each(function(){
+            var pu = parseFloat($(this).find(".pu").html());
+            //alert('this is'+pu);
+            var qte = parseFloat($(this).find(".qte").html());
+            //alert('this is'+qte);
+            var sous_total = pu * qte;
+            $(this).find(".sous_total").html(sous_total);
+            $(this).find(".prix_unitaire").val(pu);
+            $(this).find(".quantite").val(qte);
+            $(this).find(".sous_total").val(sous_total);
+            if(!isNaN(sous_total)){
+                total+= sous_total;
+            }
+        });
+        $('#ht').html(total);
+        $(".montant_ht").val(total);
+        fnttc();
+    });
+    
+    $('.balance').on('keyup', '#tva', function(){
+        var ttc = 0;
+        
+       var total = parseFloat($("#ht").html());
+        $(".montant_ht").val(total);
+        //alert(""+total)
+        var tva = parseFloat($("#tva").html());
+        $(".tva_valeur").val(tva);
+            //alert(""+tva);
+            ttc = total + ((total*tva)/100);
+        $('#ttc').html(ttc);
+        $(".montant_ttc").val(ttc);
+    });
+    // when a new elmnt is added
+ 
+    
+    //fin
+    });
+
+
+
+/*===================================================*/
+
+function fnttc(){
+    var ttc = 0;
+        
+       var total = parseFloat($("#ht").html());
+        //alert(""+total)
+        var tva = parseFloat($("#tva").html());
+        $(".tva_valeur").val(tva);
+            //alert(""+tva);
+            ttc = total + ((total*tva)/100);
+        $('#ttc').html(ttc);
+        $(".montant_ttc").val(ttc);
+}
+
+function updateInvoice(){
+    var total = 0;
+        $('#facture_produits .produits').each(function(){
+            var pu = parseFloat($(this).find(".pu").html());
+            //alert('this is'+pu);
+            var qte = parseFloat($(this).find(".qte").html());
+            //alert('this is'+qte);
+            var sous_total = pu * qte;
+            $(this).find(".sous_total").html(sous_total);
+            $(this).find(".prix_unitaire").val(pu);
+            $(this).find(".quantite").val(qte);
+            $(this).find(".sous_total").val(sous_total);
+            if(!isNaN(sous_total))
+                total+= sous_total;
+        });
+        $('#ht').html(total);
+        $(".montant_ht").val(total);
+        var tva = parseFloat($("#tva").html());
+        $(".tva_valeur").val(tva);
+        var ttc = total + ((total*tva)/100);
+        $('#ttc').html(ttc);
+        $(".montant_ttc").val(ttc);
+}
+

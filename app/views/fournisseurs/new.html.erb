@@ -1,0 +1,17 @@
+<h2>Ajouter un nouveau fournisseur</h2>
+<br/>
+
+<%= form_for :fournisseur, :url => {:action => 'create', :utilisateur_id => @current_user.id} do |form| %>
+
+<fieldset>
+    <legend>Informations du Fournisseur</legend>
+<%= render :partial => 'form', :locals => {:f => form} %>
+<div>
+    <%= submit_tag "Ajouter", :class => "submit" %> &nbsp;
+    <%= link_to "Annuler", {:action => "index", :utilisateur_id => @current_user.id}, :class => "cancel" %>
+</div>
+</fieldset>
+
+
+
+<% end %>

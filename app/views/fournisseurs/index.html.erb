@@ -1,0 +1,30 @@
+<h1>Fournisseurs</h1>
+
+
+<%= flash_notice %>
+<div>
+    <h2>Liste des Fournisseurs</h2>
+    <h3><%= link_to "Ajouter un nouveau fournisseur", :action => "new", :utilisateur_id => @current_user.id %></h3><br/>
+    <%= pas_fournisseurs(@fournisseurs) %>
+    <table>
+        
+        <thead>
+            <td>Nom</td>
+            <td>Pays</td>
+            <td>Ville</td>
+        </thead>
+        
+        <tbody>
+            <% @fournisseurs.each do |fournisseur| %>            
+            <tr>
+                <td><%= fournisseur.nom %></td>
+                <td><%= fournisseur.pays %></td>
+                <td><%= fournisseur.ville %></td>
+                <td><%= link_to "Voir details", :action => "show", :utilisateur_id => @current_user.id, :id => fournisseur.id %></td>
+                <td><%= link_to "Voir produits", :action => "produit", :utilisateur_id => @current_user.id, :id => fournisseur.id %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    
+    </table>
+</div>
