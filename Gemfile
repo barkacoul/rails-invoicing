@@ -63,6 +63,6 @@ end
 
 #production gem
 
-    gem :production do
+    group :production do
         gem 'pg'
     end
