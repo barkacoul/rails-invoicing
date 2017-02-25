@@ -103,6 +103,7 @@ GEM
       mimemagic (~> 0.3.0)
     pdf-core (0.6.1)
     pdfkit (0.8.2)
+    pg (0.18.4)
     prawn (2.1.0)
       pdf-core (~> 0.6.1)
       ttfunk (~> 1.4.0)
@@ -196,6 +197,7 @@ DEPENDENCIES
   numbers_and_words (~> 0.10.3)
   paperclip (~> 5.1)
   pdfkit
+  pg
   prawn
   pry
   pry-nav
