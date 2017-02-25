@@ -61,3 +61,8 @@ group :development do
     gem 'better_errors'
 end
 
+#production gem
+
+    gem :production do
+        gem 'pg'
+    end

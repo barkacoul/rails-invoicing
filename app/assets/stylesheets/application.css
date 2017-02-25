@@ -90,6 +90,10 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 #header form input{display:block; float:left; width:200px; margin:0; padding:5px; color:#C0BAB6; background-color:#232323; border:1px solid #666666;}
 #header form #sf_submit{display:block; float:right; width:70px; font-size:12px; font-weight:bold; text-transform:uppercase; color:#FFFFFF; background-color:#FF9900; border:none; cursor:pointer;}
 
+/*
+*
+*   Menu Navigation css (with some conflicting codes)
+*
 #header nav{display:block; width:100%; margin:0; padding:20px 0; color:#C0BAB6; background-color:#232323; z-index: 5; clear:both;}
 #header nav ul{padding:0 20px;}
 #header nav ul a {white-space: nowrap;}
@@ -100,6 +104,28 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 #header nav li:hover ul{left: 0;}
 #header nav li:hover ul a{text-decoration: none;}
 #header nav li:hover ul li a:hover{}
+*
+* End of that navigation
+*
+*/
+
+#header nav{display:block; width:100%; margin:0; padding:20px 0; color:#C0BAB6; background-color:#232323; z-index: 5; clear:both;}
+/*#header nav ul{padding:0 20px;}*/
+/*#header nav ul a {white-space: nowrap;}*/
+/*#header nav li{display:inline; margin-right:25px; text-transform:uppercase; padding-top: 1px; float: none;}*/
+
+#header nav li.last{margin-right:0;}
+#header nav li a{color:#C0BAB6; background-color:#232323;}
+#header nav li a:hover{color:#FF9900; background-color:#232323;}
+
+.dropdown{
+    display: inline-block;
+    position: relative;
+    margin-right:25px;
+    text-transform:uppercase;
+    padding-top: 1px;
+    float: none;
+}
 
 .dropdown-content {
     display: none;
@@ -121,6 +147,7 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 
 .dropdown:hover .dropdown-content {
     display: block;
+    position: absolute;
 }
 
 .div-tete div {
